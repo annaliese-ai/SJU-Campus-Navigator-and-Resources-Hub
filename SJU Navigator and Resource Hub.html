@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SJU Campus Navigator & Resource Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-red-900 text-white shadow-md">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight">SJU Campus Navigator & Resource Hub</h1>
+                <p class="text-red-200 text-sm mt-0.5">MKT 4350 Alpha MVP — Solving Student Navigational Friction</p>
+            </div>
+            <div class="mt-3 md:mt-0 bg-red-800 px-3 py-1.5 rounded-lg text-xs font-medium border border-red-700">
+                St. John's University • Queens, NY
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-6 py-8 flex-grow grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
+
+        <!-- Left Column: Quick-Start Solutions & Directory -->
+        <div class="lg:col-span-2 space-y-8">
+            
+            <!-- Quick-Start Solutions (Test Alpha MVP) -->
+            <section>
+                <h2 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                    Quick-Start Solutions (Test Alpha MVP)
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    
+                    <!-- Card 1 -->
+                    <div onclick="triggerQuickPrompt('Where is the IT help desk located?')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold mb-3 group-hover:bg-red-600 group-hover:text-white transition">IT</div>
+                        <h3 class="font-semibold text-slate-900 mb-1">Hidden IT Office</h3>
+                        <p class="text-sm text-slate-600">Find IT help desk location without wandering.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div onclick="triggerQuickPrompt('How do I bypass Okta locks and fix registration holds?')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold mb-3 group-hover:bg-red-600 group-hover:text-white transition">OK</div>
+                        <h3 class="font-semibold text-slate-900 mb-1">Bypass Okta & Holds</h3>
+                        <p class="text-sm text-slate-600">Fix registration locks & avoid phone wait lines.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div onclick="triggerQuickPrompt('How do I navigate UIS and Connect portals without clutter?')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold mb-3 group-hover:bg-red-600 group-hover:text-white transition">UI</div>
+                        <h3 class="font-semibold text-slate-900 mb-1">UIS & Connect Portals</h3>
+                        <p class="text-sm text-slate-600">Direct click-paths bypassing clutter.</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div onclick="triggerQuickPrompt('Show me the Direct Advisor Directory for all colleges.')" class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:border-red-500 hover:shadow-md transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-lg bg-red-50 text-red-700 flex items-center justify-center font-bold mb-3 group-hover:bg-red-600 group-hover:text-white transition">DIR</div>
+                        <h3 class="font-semibold text-slate-900 mb-1">Direct Advisor Directory</h3>
+                        <p class="text-sm text-slate-600">Exact room numbers and phone contacts.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Campus Resource Directory Lookup -->
+            <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h2 class="text-lg font-bold text-slate-800 mb-3">Campus Resource Quick Search</h2>
+                <p class="text-sm text-slate-600 mb-4">Search verified campus offices, advising suites, and technical help desks.</p>
+                <div class="flex gap-2">
+                    <input type="text" id="directorySearch" placeholder="Search by college, IT, advisor, room..." class="flex-grow px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 text-sm" oninput="filterDirectory()">
+                    <button onclick="filterDirectory()" class="bg-red-900 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-red-800 transition">Search</button>
+                </div>
+                <div id="directoryResults" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100"><strong>IT Help Desk:</strong> By the staircase by Marillac Hall.</div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100"><strong>First-Year Students:</strong> Center for Student Success, St. Augustine Hall Rm 104 (718-990-5858).</div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100"><strong>Tobin College of Business:</strong> Tobin Bldg (across from Carnesecca). Grad Rm 114 (718-990-6212).</div>
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-100"><strong>Liberal Arts & Sciences:</strong> St. John Hall Rm 145 & Dean's Office Rm 135.</div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Right Column: AI Assistant Chatbot -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 flex flex-col h-[600px] overflow-hidden">
+            <!-- Chat Header -->
+            <div class="bg-red-900 text-white p-4 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-sm">SJU Campus AI Assistant</h3>
+                    <p class="text-xs text-red-200">Online • Verified SJU Data Active</p>
+                </div>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            </div>
+
+            <!-- Chat Message Window -->
+            <div id="chatMessages" class="flex-grow p-4 overflow-y-auto space-y-3 text-sm bg-slate-50">
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs max-w-[85%] text-slate-800">
+                    👋 Hello! I'm your SJU Campus Assistant. Click any prompt on the left or ask me about office locations, IT help by Marillac Hall, advising room numbers, or portal links!
+                </div>
+            </div>
+
+            <!-- Starter Chips inside chat -->
+            <div class="px-3 py-2 bg-slate-100 border-t border-slate-200 flex gap-1.5 overflow-x-auto text-xs">
+                <button onclick="triggerQuickPrompt('Where is IT?')" class="bg-white border border-slate-300 px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-red-50 hover:border-red-300 transition">📍 IT Location</button>
+                <button onclick="triggerQuickPrompt('First-year advising')" class="bg-white border border-slate-300 px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-red-50 hover:border-red-300 transition">🎓 First-Year CSS</button>
+                <button onclick="triggerQuickPrompt('Tobin business office')" class="bg-white border border-slate-300 px-2.5 py-1 rounded-full whitespace-nowrap hover:bg-red-50 hover:border-red-300 transition">📊 Tobin College</button>
+            </div>
+
+            <!-- Chat Input Form -->
+            <div class="p-3 bg-white border-t border-slate-200 flex gap-2">
+                <input type="text" id="userInput" placeholder="Ask a campus question..." class="flex-grow px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-600" onkeypress="if(event.key === 'Enter') sendUserMessage()">
+                <button onclick="sendUserMessage()" class="bg-red-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-800 transition">Send</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+        St. John's University MKT 4350 Design Thinking Alpha Prototype • Built for Student Testing
+    </footer>
+
+    <!-- JavaScript Robust Matching Engine -->
+    <script>
+        function appendMessage(sender, text) {
+            const chatBox = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            if (sender === 'user') {
+                msgDiv.className = 'bg-red-900 text-white p-3 rounded-xl ml-auto max-w-[85%] text-right';
+            } else {
+                msgDiv.className = 'bg-white p-3 rounded-xl border border-slate-200 shadow-xs max-w-[85%] text-slate-800 whitespace-pre-line';
+            }
+            msgDiv.innerText = text;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function getAIResponse(query) {
+            const q = query.toLowerCase();
+
+            // Card 1: IT Help Desk Query
+            if (q.includes('it') || q.includes('help desk') || q.includes('computer') || q.includes('tech') || q.includes('wifi') || q.includes('wandering')) {
+                return "📍 **IT Help Desk Location:**\nIT support is located directly **by the staircase by Marillac Hall**. You can stop by in person for laptop support, network logins, and tech troubleshooting.";
+            }
+
+            // Card 2: Okta & Holds Query
+            if (q.includes('okta') || q.includes('lock') || q.includes('hold') || q.includes('bypass') || q.includes('wait lines') || q.includes('registration locks')) {
+                return "🔐 **Bypassing Okta & Registration Holds:**\n• **Okta Auth Locks:** Clear your browser cache or switch to Incognito Mode to break authentication redirect loops.\n• **Academic & Registration Holds:** Contact or visit the **Center for Student Success** inside St. Augustine Hall (Room 104) or call **718-990-5858** to process hold releases directly.";
+            }
+
+            // Card 3: UIS & Connect Portals
+            if (q.includes('uis') || q.includes('connect') || q.includes('portal') || q.includes('clutter') || q.includes('click-path') || q.includes('navigate uis')) {
+                return "🖥️ **Clean Portal Navigation:**\nTo bypass cluttered links on Signon/UIS:\n1. Go directly to **UIS Student Center** -> **Student Records** -> **Registration** for clean course adding.\n2. Access **DegreeWorks** directly under Academic Profile to view real-time minor & core progress without navigating menu sub-pages.";
+            }
+
+            // Card 4 / Directory Overview Query
+            if (q.includes('directory') || q.includes('all colleges') || q.includes('advisor directory') || q.includes('contacts')) {
+                return "🏫 **Direct Campus Advising Directory:**\n\n• **First-Year Students (All Colleges):** Center for Student Success, St. Augustine Hall (Library) Rm 104 | 📞 718-990-5858\n\n• **Tobin College of Business:** Tobin Building (across Carnesecca). Grad Rm 114 | 📞 Undergrad: 718-990-6212\n\n• **St. John’s College of Liberal Arts:** St. John Hall Rm 145 (Dean's Office: Rm 135)\n\n• **Collins College (CCPS):** St. Augustine Hall, 2nd Floor | 📞 718-990-6414\n\n• **Pharmacy & Health Sciences:** St. Albert Hall Rm 114 | 📞 718-990-6275 (Pharm.D: 718-990-1439)\n\n• **School of Education:** Sullivan Hall Rm 133 | 📞 718-990-2664 (Grad/Dept: Floors 4 & 5, Rms 418, 430, 513)\n\n• **School of Law:** Belson Hall / Finley Hall";
+            }
+
+            // Specific College Lookups
+            if (q.includes('first-year') || q.includes('freshman') || q.includes('css')) {
+                return "🎓 **First-Year Student Advising (All Colleges):**\nLocated in the **Center for Student Success** inside **St. Augustine Hall (University Library), Room 104**. Call **718-990-5858** for front desk assistance.";
+            }
+
+            if (q.includes('tobin') || q.includes('business')) {
+                return "📊 **Peter J. Tobin College of Business:**\nLocated in the **Tobin College of Business Building** (across from Carnesecca Arena).\n• Graduate Division: Room 114\n• Undergraduate Division: Call **718-990-6212** for exact advisor room assignments.";
+            }
+
+            if (q.includes('liberal arts') || q.includes('st. john hall') || q.includes('sjc')) {
+                return "📚 **St. John’s College of Liberal Arts and Sciences:**\nLocated in **St. John Hall, Room 145** (Undergraduate & Graduate Divisions) and **Room 135** (Dean's Office). Sophomores, juniors, and seniors also meet with faculty advisors in their specific department.";
+            }
+
+            if (q.includes('ccps') || q.includes('professional studies')) {
+                return "💻 **Collins College of Professional Studies (CCPS):**\nLocated on the **Second Floor of St. Augustine Hall**. Main desk: **718-990-6414**.";
+            }
+
+            if (q.includes('pharmacy') || q.includes('health')) {
+                return "💊 **College of Pharmacy and Health Sciences:**\nLocated in **St. Albert Hall, Room 114**.\n• Undergrad: 718-990-6275\n• Pharm.D: 718-990-1439";
+            }
+
+            if (q.includes('education') || q.includes('sullivan')) {
+                return "🍎 **School of Education:**\nLocated in **Sullivan Hall**.\n• Undergrad Advisement: Room 133 (718-990-2664)\n• Dept/Grad Offices: 4th & 5th floors (Rooms 418, 430, and 513).";
+            }
+
+            if (q.includes('law') || q.includes('belson') || q.includes('finley')) {
+                return "⚖️ **School of Law:**\nLocated separately on campus inside **Belson Hall / Finley Hall**.";
+            }
+
+            // Fallback response
+            return "I've searched our verified SJU database for \"" + query + "\". You can visit IT **by the staircase by Marillac Hall**, check **St. Augustine Hall (Rm 104)** for First-Year/CSS, or select one of the Quick-Start cards above!";
+        }
+
+        function sendUserMessage() {
+            const inputField = document.getElementById('userInput');
+            const text = inputField.value.trim();
+            if (!text) return;
+
+            appendMessage('user', text);
+            inputField.value = '';
+
+            setTimeout(() => {
+                const response = getAIResponse(text);
+                appendMessage('ai', response);
+            }, 300);
+        }
+
+        function triggerQuickPrompt(promptText) {
+            document.getElementById('userInput').value = promptText;
+            sendUserMessage();
+        }
+
+        function filterDirectory() {
+            const query = document.getElementById('directorySearch').value.toLowerCase();
+            const resultsDiv = document.getElementById('directoryResults');
+            
+            const entries = [
+                { title: "IT Help Desk", text: "By the staircase by Marillac Hall." },
+                { title: "First-Year Students", text: "Center for Student Success, St. Augustine Hall Rm 104 (718-990-5858)." },
+                { title: "Tobin College of Business", text: "Tobin Bldg (across from Carnesecca). Grad Rm 114 (718-990-6212)." },
+                { title: "Liberal Arts & Sciences", text: "St. John Hall Rm 145 & Dean's Office Rm 135." },
+                { title: "CCPS", text: "Second Floor of St. Augustine Hall (718-990-6414)." },
+                { title: "Pharmacy & Health Sciences", text: "St. Albert Hall Rm 114 (718-990-6275)." },
+                { title: "School of Education", text: "Sullivan Hall Rm 133 (718-990-2664)." },
+                { title: "School of Law", text: "Belson Hall / Finley Hall." }
+            ];
+
+            const filtered = entries.filter(e => e.title.toLowerCase().includes(query) || e.text.toLowerCase().includes(query));
+            
+            resultsDiv.innerHTML = filtered.map(e => `
+                <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                    <strong>${e.title}:</strong> ${e.text}
+                </div>
+            `).join('') || '<div class="col-span-2 p-3 text-slate-500 text-center">No matching offices found. Try searching "IT", "Tobin", or "Law".</div>';
+        }
+    </script>
+</body>
+</html>
