@@ -145,16 +145,17 @@
         function getAIResponse(query) {
             const q = query.toLowerCase();
 
-            if (q.includes('it') || q.includes('help desk') || q.includes('computer') || q.includes('tech') || q.includes('wifi') || q.includes('wandering')) {
-                return "📍 **IT Help Desk Location:**\nIT support is located directly **by the staircase by Marillac Hall**. You can stop by in person for laptop support, network logins, and tech troubleshooting.";
+            // Check UIS / portals first so it doesn't get caught by broader keywords
+            if (q.includes('uis') || q.includes('connect') || q.includes('portal') || q.includes('clutter') || q.includes('click-path') || q.includes('navigate uis')) {
+                return "🖥️ **Clean Portal Navigation:**\nTo bypass cluttered links on Signon/UIS:\n1. Go directly to **UIS Student Center** -> **Student Records** -> **Registration** for clean course adding.\n2. Access **DegreeWorks** directly under Academic Profile to view real-time minor & core progress without navigating menu sub-pages.";
             }
 
             if (q.includes('okta') || q.includes('lock') || q.includes('hold') || q.includes('bypass') || q.includes('wait lines') || q.includes('registration locks')) {
                 return "🔐 **Bypassing Okta & Registration Holds:**\n• **Okta Auth Locks:** Clear your browser cache or switch to Incognito Mode to break authentication redirect loops.\n• **Academic & Registration Holds:** Contact or visit the **Center for Student Success** inside St. Augustine Hall (Room 104) or call **718-990-5858** to process hold releases directly.";
             }
 
-            if (q.includes('uis') || q.includes('connect') || q.includes('portal') || q.includes('clutter') || q.includes('click-path') || q.includes('navigate uis')) {
-                return "🖥️ **Clean Portal Navigation:**\nTo bypass cluttered links on Signon/UIS:\n1. Go directly to **UIS Student Center** -> **Student Records** -> **Registration** for clean course adding.\n2. Access **DegreeWorks** directly under Academic Profile to view real-time minor & core progress without navigating menu sub-pages.";
+            if (q.includes('it') || q.includes('help desk') || q.includes('computer') || q.includes('tech') || q.includes('wifi') || q.includes('wandering')) {
+                return "📍 **IT Help Desk Location:**\nIT support is located directly **by the staircase by Marillac Hall**. You can stop by in person for laptop support, network logins, and tech troubleshooting.";
             }
 
             if (q.includes('directory') || q.includes('all colleges') || q.includes('advisor directory') || q.includes('contacts')) {
